@@ -54,19 +54,20 @@ body{
   transition:opacity .9s ease,visibility 0s .9s}
 #s2.show{opacity:1;visibility:visible;transition:opacity .9s ease,visibility 0s}
 .page{position:relative;min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:calc(20vh + env(safe-area-inset-top)) 22px calc(20vh + env(safe-area-inset-bottom))}
+  text-align:center;padding:calc(14vh + env(safe-area-inset-top)) 22px calc(18vh + env(safe-area-inset-bottom));
+  padding:calc(14svh + env(safe-area-inset-top)) 22px calc(18svh + env(safe-area-inset-bottom));}
 .deco{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 h1{position:relative;margin:0;font-size:clamp(2.1rem,10vw,3.5rem);line-height:1.1;font-weight:700;letter-spacing:-.02em;color:var(--purple)}
-.thanks{position:relative;margin:12px 0 28px;font-size:clamp(.95rem,4vw,1.15rem);font-weight:500;color:var(--purple);opacity:.85}
+.thanks{position:relative;margin:10px 0 20px;font-size:clamp(.95rem,4vw,1.15rem);font-weight:500;color:var(--purple);opacity:.85}
 .logos{position:relative;display:flex;gap:12px;width:100%;max-width:420px;justify-content:center;align-items:stretch}
-.logo{flex:1 1 0;min-height:72px;display:flex;align-items:center;justify-content:center;padding:10px 12px;
+.logo{flex:1 1 0;min-height:60px;display:flex;align-items:center;justify-content:center;padding:10px 12px;
   border-radius:20px;background:rgba(255,255,255,.75);border:1.5px solid var(--soft-pink);
   color:var(--purple);text-decoration:none;font-weight:600;line-height:1.2;font-size:clamp(.9rem,3.8vw,1.1rem);
   box-shadow:0 6px 16px rgba(255,95,162,.16);-webkit-user-select:none;user-select:none}
 .logo:active{transform:scale(.97)}
 .logo:focus-visible,.again:focus-visible{outline:3px solid var(--purple);outline-offset:3px}
-.logo img{display:block;max-width:100%;max-height:64px;object-fit:contain}
-.again{position:relative;margin-top:30px;min-height:52px;padding:12px 28px;border:0;border-radius:999px;
+.logo img{display:block;max-width:100%;max-height:48px;object-fit:contain}
+.again{position:relative;margin-top:20px;min-height:52px;padding:12px 28px;border:0;border-radius:999px;
   font:600 clamp(1rem,4.2vw,1.15rem) var(--f);color:#fff;cursor:pointer;
   background:linear-gradient(100deg,var(--pink),var(--deep-orange));box-shadow:0 5px 0 #c8397f,0 10px 20px rgba(255,95,162,.3)}
 .again:active{transform:translateY(3px);box-shadow:0 2px 0 #c8397f}
@@ -78,11 +79,6 @@ h1{position:relative;margin:0;font-size:clamp(2.1rem,10vw,3.5rem);line-height:1.
   50%{transform:scale(1.05,.93) rotate(2deg)}75%{transform:scale(.97,1.08) rotate(-1deg)}}
 @keyframes glow{50%{opacity:.6}}
 
-@media (prefers-reduced-motion:reduce){
-  .wandwrap,.tw,.fl,.fl2,.gl{animation:none!important}
-  .wandwrap.swish{opacity:0;transition:opacity .5s}
-  #s1,#s2,#dusk{transition-duration:.01s!important}
-}
 </style>
 </head>
 <body>
@@ -128,7 +124,7 @@ h1{position:relative;margin:0;font-size:clamp(2.1rem,10vw,3.5rem);line-height:1.
 <section id="s2" class="screen" aria-label="Happy Diwaloween">
   <div class="page">
     <div class="deco" id="deco"></div>
-    <h1><img src="title.png" alt="Happy Diwaloween" style="display:block;width:min(88vw,420px);height:auto"></h1>
+    <h1><img src="title.png" alt="Happy Diwaloween" style="display:block;width:auto;max-width:min(88vw,420px);max-height:20svh;height:auto"></h1>
     <p class="thanks">Thank you for celebrating with us today!</p>
     <div class="logos">
       <!-- To use a logo image: replace the <span> with <img src="calico.png" alt="Calico Global School"> -->
@@ -147,7 +143,7 @@ h1{position:relative;margin:0;font-size:clamp(2.1rem,10vw,3.5rem);line-height:1.
 "use strict";
 var $=function(s){return document.querySelector(s)};
 var cv=$("#fx"),ctx=cv.getContext("2d"),s1=$("#s1"),s2=$("#s2"),wand=$("#wand"),core=$("#tipcore");
-var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+var reduce=false;
 var W=1,H=1,dpr=1;
 function size(){dpr=Math.min(window.devicePixelRatio||1,2);W=window.innerWidth;H=window.innerHeight;
   cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);ctx.setTransform(dpr,0,0,dpr,0,0)}
